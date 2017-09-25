@@ -10,5 +10,10 @@
             this.Password = password;
             this.Username = username;
         }
+
+        public User()
+        {
+            
+        }
     }
 }
