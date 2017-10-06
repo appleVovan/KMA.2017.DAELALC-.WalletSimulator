@@ -1,48 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static System.String;
+using FontAwesome.WPF;
 
 namespace LoginProject
 {
   
-    public partial class LoginWindow : Window
+    public partial class LoginWindow
     {
+        #region Fields
+        private readonly LoginViewModel _loginViewModel;
+        private ImageAwesome _loader;
+        #endregion
+
+        #region Constructor
         public LoginWindow()
         {
             InitializeComponent();
-            LoginViewModel = new LoginViewModel(new User());
-            LoginViewModel.RequestClose += Close;
-            DataContext = LoginViewModel;
+            _loginViewModel = new LoginViewModel(new User());
+            _loginViewModel.RequestClose += Close;
+            _loginViewModel.RequestLoader += LoginViewModelOnRequestLoader;
+            DataContext = _loginViewModel;
         }
 
-        private LoginViewModel LoginViewModel { get; set; }
+        private void LoginViewModelOnRequestLoader(bool isShow)
+        {
+            if (isShow && _loader==null)
+            {
+                _loader = new ImageAwesome();
+                MainGrid.Children.Add(_loader);
+                _loader.Icon = FontAwesomeIcon.Refresh;
+                _loader.Spin = true;
+                Grid.SetRow(_loader, 1);
+                Grid.SetColumn(_loader, 1);
+                IsEnabled = false;
+            }
+            else if (_loader!=null)
+            {
+                MainGrid.Children.Remove(_loader);
+                _loader = null;
+                IsEnabled = true;
+            }
+        }
 
+        #endregion
+
+        #region EventHandlers
         private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            LoginViewModel.Password = Password.Password;
+            _loginViewModel.Password = Password.Password;
         }
-
-
 
         private void Close(bool isQuitApp)
         {
             if (!isQuitApp)
-                this.Close();
+                Close();
             else
-            {
-                Environment.Exit(0);
-            }
-        }
+                StationManager.ShutDown(0);
+        } 
+        #endregion
     }
 }
