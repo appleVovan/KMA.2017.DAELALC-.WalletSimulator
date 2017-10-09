@@ -80,7 +80,6 @@
     <Compile Include="SerializeManager.cs" />
     <Compile Include="StationManager.cs" />
     <Compile Include="StaticResources.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>

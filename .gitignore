@@ -2,3 +2,10 @@
 .vs/LoginProject/v15/.suo
 LoginProject/bin
 LoginProject/obj
+DBAdapter/bin
+DBAdapter/obj
+DBTester/bin
+DBTester/obj
+packages
+WalletInterfaceAndModels/bin
+WalletInterfaceAndModels/obj
