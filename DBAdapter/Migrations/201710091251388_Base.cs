@@ -1,8 +1,7 @@
-namespace DBAdapter.Migrations
+using System.Data.Entity.Migrations;
+
+namespace WalletSimulator.DBAdapter.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class Base : DbMigration
     {
         public override void Up()
@@ -11,13 +10,13 @@ namespace DBAdapter.Migrations
                 "dbo.Transaction",
                 c => new
                     {
-                        Guid = c.Guid(nullable: false),
-                        Amount = c.Int(nullable: false),
-                        Title = c.String(nullable: false),
-                        WalletGuid = c.Guid(nullable: false),
+                        Guid = c.Guid(false),
+                        Amount = c.Int(false),
+                        Title = c.String(false),
+                        WalletGuid = c.Guid(false),
                     })
                 .PrimaryKey(t => t.Guid)
-                .ForeignKey("dbo.Wallet", t => t.WalletGuid, cascadeDelete: true)
+                .ForeignKey("dbo.Wallet", t => t.WalletGuid, true)
                 .Index(t => t.WalletGuid);
             
             CreateTable(

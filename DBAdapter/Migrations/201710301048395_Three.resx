@@ -117,34 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SignIn_FailedToGetUser" xml:space="preserve">
-    <value>Failed to get user.{0}Reason: {1}</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="SignIn_UserDoesntExist" xml:space="preserve">
-    <value>User with login {0} doesn't exist!</value>
-  </data>
-  <data name="SignUp_EmailIsNotValid" xml:space="preserve">
-    <value>Email address {0} is not valid!</value>
-  </data>
-  <data name="SignUp_FailedToCreateUser" xml:space="preserve">
-    <value>Failed to create user.{0}Reason: {1}</value>
-  </data>
-  <data name="SignUp_FailedToValidateData" xml:space="preserve">
-    <value>Failed to validate data.{0}Reason: {1}</value>
-  </data>
-  <data name="SignUp_UserAlreadyExists" xml:space="preserve">
-    <value>User with login {0} already exists!</value>
-  </data>
-  <data name="SignUp_UserdoesntExist" xml:space="preserve">
-    <value>User with login {0} doesn't exist!</value>
-  </data>
-  <data name="SignUp_UserSuccessfulyCreated" xml:space="preserve">
-    <value>User {0} successfully created!</value>
-  </data>
-  <data name="SignIn_FailedToValidatePassword" xml:space="preserve">
-    <value>Failed to validate password.{0}Reason: {1}</value>
-  </data>
-  <data name="SignIn_WrongPassword" xml:space="preserve">
-    <value>Wrong password!</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

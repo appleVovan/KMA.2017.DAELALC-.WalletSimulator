@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LoginProject;
+using WalletInterfaceAndModels.Models;
 
-namespace WalletInterfaceAndModels.Models
+namespace WalletSimulator.Interface.Models
 {
     public class Wallet
     {
@@ -14,19 +11,27 @@ namespace WalletInterfaceAndModels.Models
         public string Title { get; set; }
         public long TotalIncome { get; set; }
         public long TotalOutcome { get; set; }
-        public Guid UserGuid { get; set; }
 
-        public User User { get; set; }
+        public virtual List<UserWalletRelation> UserWalletRelations { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
 
-        public Wallet(string username, string password)
+        public Wallet(string title, User user) : this()
         {
             Guid = Guid.NewGuid();
+            this.Title = title;
+            new UserWalletRelation(user, this);
+
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
 
         public Wallet()
         {
-
+            this.Transactions = new List<Transaction>();
+            this.UserWalletRelations = new List<UserWalletRelation>();
         }
 
         public class WalletEntityConfiguration : EntityTypeConfiguration<Wallet>
@@ -48,6 +53,8 @@ namespace WalletInterfaceAndModels.Models
                     .WithRequired(w => w.Wallet)
                     .HasForeignKey(w => w.WalletGuid)
                     .WillCascadeOnDelete(true);
+
+                HasMany(s=>s.UserWalletRelations).WithRequired(w=>w.Wallet).HasForeignKey(w=>w.WalletGuid).WillCascadeOnDelete(true);
             }
         }
     }   

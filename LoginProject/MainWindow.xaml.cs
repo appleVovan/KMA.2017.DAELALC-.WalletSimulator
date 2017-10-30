@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using LoginProject;
+using WalletSimulator.Authentication;
+using WalletSimulator.DBAdapter;
+using WalletSimulator.Interface.Models;
 
-namespace LoginProject
+namespace WalletSimulator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,16 +15,49 @@ namespace LoginProject
     {
         public MainWindow()
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.ShowDialog();
             InitializeComponent();
-            AppDomain.CurrentDomain.ProcessExit += (sender, args) => OnExit(sender, args);
+            Visibility = Visibility.Hidden;
+            SignInWindow loginWindow = new SignInWindow();
+
+            loginWindow.Closed += (sender, args) => Initialize();
+            loginWindow.ShowDialog();
+            
+            
+        }
+
+        private void Initialize()
+        {
+            Visibility = Visibility.Visible;
+            FillWallet();
+            
         }
 
         private void OnExit(object obj, EventArgs a)
         {
             MessageBox.Show("Salut!");
             Environment.Exit(0);
+        }
+
+        private void FillWallet()
+        {
+            foreach (var wallet in StationManager.CurrentUser.UserWalletRelations)
+            {
+                Button walletButton = new Button();
+                WalletsPanel.Children.Add(walletButton);
+                walletButton.Content = wallet.Wallet;
+                walletButton.Click += WalletButton_Click;
+            }
+        }
+
+        private void WalletButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Wallet wallet = new Wallet("WAllet", StationManager.CurrentUser);
+            EntityWrapper.AddWallet(wallet);
         }
     }
 }

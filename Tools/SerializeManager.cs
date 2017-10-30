@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.TextFormatting;
 
-namespace LoginProject
+namespace WalletSimulator.Tools
 {
     internal interface ISerializable
     {
@@ -16,8 +11,6 @@ namespace LoginProject
 
     internal static class SerializeManager
     {
-        
-
         private static string CreateAndGetPath(string filename)
         {
             if (!Directory.Exists(StaticResources.ClientDirPath))

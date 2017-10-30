@@ -7,8 +7,8 @@
     <ProjectGuid>{D4949F27-8FDB-4FF1-9FAD-7E01DAF24F3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DBAdapter</RootNamespace>
-    <AssemblyName>DBAdapter</AssemblyName>
+    <RootNamespace>WalletSimulator.DBAdapter</RootNamespace>
+    <AssemblyName>WalletSimulator.DBAdapter</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EntityWrapper.cs" />
     <Compile Include="Migrations\201710091251388_Base.cs" />
     <Compile Include="Migrations\201710091251388_Base.Designer.cs">
       <DependentUpon>201710091251388_Base.cs</DependentUpon>
@@ -55,6 +55,14 @@
     <Compile Include="Migrations\201710091254560_One.cs" />
     <Compile Include="Migrations\201710091254560_One.Designer.cs">
       <DependentUpon>201710091254560_One.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710301046280_Two.cs" />
+    <Compile Include="Migrations\201710301046280_Two.Designer.cs">
+      <DependentUpon>201710301046280_Two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710301048395_Three.cs" />
+    <Compile Include="Migrations\201710301048395_Three.Designer.cs">
+      <DependentUpon>201710301048395_Three.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="WalletContext.cs" />
@@ -65,9 +73,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WalletInterfaceAndModels\WalletInterfaceAndModels.csproj">
+    <ProjectReference Include="..\WalletInterfaceAndModels\Interface.csproj">
       <Project>{82336945-AB0F-4A0A-904E-7912CC66B828}</Project>
-      <Name>WalletInterfaceAndModels</Name>
+      <Name>Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +84,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710091254560_One.resx">
       <DependentUpon>201710091254560_One.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301046280_Two.resx">
+      <DependentUpon>201710301046280_Two.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301048395_Three.resx">
+      <DependentUpon>201710301048395_Three.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

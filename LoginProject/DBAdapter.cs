@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WalletSimulator.Interface.Models;
 
 namespace LoginProject
 {
@@ -10,8 +11,8 @@ namespace LoginProject
         {
             Users = new List<User>
             {
-                new User("sergiy", "password"),
-                new User("sergiy2", "password2")
+                //new User("sergiy", "password"),
+                //new User("sergiy2", "password2")
             };
         }
     }

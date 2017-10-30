@@ -9,3 +9,7 @@ DBTester/obj
 packages
 WalletInterfaceAndModels/bin
 WalletInterfaceAndModels/obj
+.vs/WalletSimulator/v15/.suo
+Tools/bin
+Tools/obj
+WalletSimulator.sln.DotSettings

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WalletSimulator.Interface.Models;
 
 namespace LoginProject
 {

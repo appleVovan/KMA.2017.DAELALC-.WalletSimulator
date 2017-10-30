@@ -117,34 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SignIn_FailedToGetUser" xml:space="preserve">
-    <value>Failed to get user.{0}Reason: {1}</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="SignIn_UserDoesntExist" xml:space="preserve">
-    <value>User with login {0} doesn't exist!</value>
-  </data>
-  <data name="SignUp_EmailIsNotValid" xml:space="preserve">
-    <value>Email address {0} is not valid!</value>
-  </data>
-  <data name="SignUp_FailedToCreateUser" xml:space="preserve">
-    <value>Failed to create user.{0}Reason: {1}</value>
-  </data>
-  <data name="SignUp_FailedToValidateData" xml:space="preserve">
-    <value>Failed to validate data.{0}Reason: {1}</value>
-  </data>
-  <data name="SignUp_UserAlreadyExists" xml:space="preserve">
-    <value>User with login {0} already exists!</value>
-  </data>
-  <data name="SignUp_UserdoesntExist" xml:space="preserve">
-    <value>User with login {0} doesn't exist!</value>
-  </data>
-  <data name="SignUp_UserSuccessfulyCreated" xml:space="preserve">
-    <value>User {0} successfully created!</value>
-  </data>
-  <data name="SignIn_FailedToValidatePassword" xml:space="preserve">
-    <value>Failed to validate password.{0}Reason: {1}</value>
-  </data>
-  <data name="SignIn_WrongPassword" xml:space="preserve">
-    <value>Wrong password!</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

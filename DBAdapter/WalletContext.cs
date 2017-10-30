@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DBAdapter.Migrations;
-using LoginProject;
+﻿using System.Data.Entity;
 using WalletInterfaceAndModels.Models;
+using WalletSimulator.DBAdapter.Migrations;
+using WalletSimulator.Interface.Models;
 
-namespace DBAdapter
+namespace WalletSimulator.DBAdapter
 {
     public class WalletContext:DbContext
     {
@@ -27,6 +22,7 @@ namespace DBAdapter
             modelBuilder.Configurations.Add(new User.UserEntityConfiguration());
             modelBuilder.Configurations.Add(new Wallet.WalletEntityConfiguration());
             modelBuilder.Configurations.Add(new Transaction.TransactionEntityConfiguration());
+            modelBuilder.Configurations.Add(new UserWalletRelation.UserWalletRelationEntityConfiguration());
         }
     }
 }
