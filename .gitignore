@@ -13,3 +13,5 @@ WalletInterfaceAndModels/obj
 Tools/bin
 Tools/obj
 WalletSimulator.sln.DotSettings
+WalletSimulatorService/bin
+WalletSimulatorService/obj

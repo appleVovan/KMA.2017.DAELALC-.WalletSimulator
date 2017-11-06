@@ -7,16 +7,18 @@
         xmlns:walletSimulator="clr-namespace:WalletSimulator"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*">
                 
             </ColumnDefinition>
             <ColumnDefinition Width="80*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Name="WalletsPanel">
-            <Button Content="+" Click="Button_Click"/>
+        <StackPanel >
+            <Button Content="+" Click="AddWallet_Click"/>
+            <StackPanel Name="WalletsPanel">
+            </StackPanel>
         </StackPanel>
-        <walletSimulator:WalletView Grid.Column="1"></walletSimulator:WalletView>
+        <!--<walletSimulator:WalletView Grid.Column="1"></walletSimulator:WalletView>-->
     </Grid>
 </Window>

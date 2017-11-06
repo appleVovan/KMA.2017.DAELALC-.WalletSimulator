@@ -1,61 +1,112 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using WalletInterfaceAndModels.Models;
+using System.Runtime.Serialization;
 
 namespace WalletSimulator.Interface.Models
 {
+    [DataContract(IsReference = true)]
     public class Wallet
     {
-        public Guid Guid { get; set; }
-        public string Title { get; set; }
-        public long TotalIncome { get; set; }
-        public long TotalOutcome { get; set; }
+        #region Fields
+        [DataMember]
+        private Guid _guid;
+        [DataMember]
+        private string _title;
+        [DataMember]
+        private long _totalIncome;
+        [DataMember]
+        private long _totalOutcome;
+        [DataMember]
+        private List<UserWalletRelation> _userWalletRelations;
+        [DataMember]
+        private List<Transaction> _transactions;
+        #endregion
 
-        public virtual List<UserWalletRelation> UserWalletRelations { get; set; }
-        public virtual List<Transaction> Transactions { get; set; }
+        #region Properties
+        internal Guid Guid
+        {
+            get { return _guid; }
+            private set { _guid = value; }
+        }
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+        public long TotalIncome
+        {
+            get { return _totalIncome; }
+            private set { _totalIncome = value; }
+        }
+        public long TotalOutcome
+        {
+            get { return _totalOutcome; }
+            private set { _totalOutcome = value; }
+        }
 
+        internal List<UserWalletRelation> UserWalletRelations
+        {
+            get { return _userWalletRelations; }
+            private set { _userWalletRelations = value; }
+        }
+
+        public List<Transaction> Transactions
+        {
+            get { return _transactions; }
+            private set { _transactions = value; }
+        }
+        #endregion
+
+        #region Constructor
         public Wallet(string title, User user) : this()
         {
-            Guid = Guid.NewGuid();
-            this.Title = title;
+            _guid = Guid.NewGuid();
+            _title = title;
+            _totalIncome = 0;
+            _totalOutcome = 0;
             new UserWalletRelation(user, this);
-
         }
+        private Wallet()
+        {
+            _transactions = new List<Transaction>();
+            _userWalletRelations = new List<UserWalletRelation>();
+        } 
+        #endregion
 
         public override string ToString()
         {
             return Title;
         }
 
-        public Wallet()
-        {
-            this.Transactions = new List<Transaction>();
-            this.UserWalletRelations = new List<UserWalletRelation>();
-        }
-
+        #region EntityFrameworkConfiguration
         public class WalletEntityConfiguration : EntityTypeConfiguration<Wallet>
         {
             public WalletEntityConfiguration()
             {
-                this.ToTable("Wallet");
+                ToTable("Wallet");
+                HasKey(s => s.Guid);
 
-                this.HasKey<Guid>(s => s.Guid);
-
-                this.Property(p => p.Title)
+                Property(p => p.Title)
                     .HasColumnName("Title")
                     .IsRequired();
-
-                this.Ignore(s => s.TotalIncome);
-                this.Ignore(s => s.TotalOutcome);
+                Property(s => s.TotalIncome)
+                    .HasColumnName("TotalIncome")
+                    .IsRequired();
+                Property(s => s.TotalOutcome)
+                    .HasColumnName("TotalOutcome")
+                    .IsRequired();
 
                 HasMany(s => s.Transactions)
                     .WithRequired(w => w.Wallet)
                     .HasForeignKey(w => w.WalletGuid)
                     .WillCascadeOnDelete(true);
-
-                HasMany(s=>s.UserWalletRelations).WithRequired(w=>w.Wallet).HasForeignKey(w=>w.WalletGuid).WillCascadeOnDelete(true);
+                HasMany(s => s.UserWalletRelations)
+                    .WithRequired(w => w.Wallet)
+                    .HasForeignKey(w => w.WalletGuid)
+                    .WillCascadeOnDelete(true);
             }
-        }
+        } 
+        #endregion
     }   
 }

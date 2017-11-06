@@ -48,28 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityWrapper.cs" />
-    <Compile Include="Migrations\201710091251388_Base.cs" />
-    <Compile Include="Migrations\201710091251388_Base.Designer.cs">
-      <DependentUpon>201710091251388_Base.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710091254560_One.cs" />
-    <Compile Include="Migrations\201710091254560_One.Designer.cs">
-      <DependentUpon>201710091254560_One.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710301046280_Two.cs" />
-    <Compile Include="Migrations\201710301046280_Two.Designer.cs">
-      <DependentUpon>201710301046280_Two.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710301048395_Three.cs" />
-    <Compile Include="Migrations\201710301048395_Three.Designer.cs">
-      <DependentUpon>201710301048395_Three.cs</DependentUpon>
+    <Compile Include="Migrations\201710302043340_Base.cs" />
+    <Compile Include="Migrations\201710302043340_Base.Designer.cs">
+      <DependentUpon>201710302043340_Base.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="WalletContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -79,17 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710091251388_Base.resx">
-      <DependentUpon>201710091251388_Base.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710091254560_One.resx">
-      <DependentUpon>201710091254560_One.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710301046280_Two.resx">
-      <DependentUpon>201710301046280_Two.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710301048395_Three.resx">
-      <DependentUpon>201710301048395_Three.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710302043340_Base.resx">
+      <DependentUpon>201710302043340_Base.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

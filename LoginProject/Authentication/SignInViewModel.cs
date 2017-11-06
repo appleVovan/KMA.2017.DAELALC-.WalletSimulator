@@ -6,6 +6,7 @@ using System.Windows;
 using LoginProject;
 using LoginProject.Annotations;
 using WalletSimulator.DBAdapter;
+using WalletSimulator.Interface;
 using WalletSimulator.Interface.Models;
 using WalletSimulator.Properties;
 using WalletSimulator.Tools;
@@ -74,7 +75,7 @@ namespace WalletSimulator.Authentication
                 User currentUser = null;
                 try
                 {
-                    currentUser = EntityWrapper.GetUserByLogin(_login);
+                    currentUser = WalletServiceWrapper.GetUserByLogin(_login);
                 }
                 catch (Exception ex)
                 {

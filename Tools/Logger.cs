@@ -21,7 +21,7 @@ namespace WalletSimulator.Tools
             }
         }
 
-        internal static void Log(string message)
+        public static void Log(string message)
         {
             StreamWriter writer = null;
             FileStream file = null;
@@ -43,7 +43,6 @@ namespace WalletSimulator.Tools
                 file = null;
             }
         }
-
         public static void Log(string message, Exception ex)
         {
             var stringBuilder = new StringBuilder();
@@ -57,5 +56,16 @@ namespace WalletSimulator.Tools
             Log(stringBuilder.ToString());
         }
 
+        public static void Log(Exception ex)
+        {
+            var stringBuilder = new StringBuilder();
+            while (ex != null)
+            {
+                stringBuilder.AppendLine(ex.Message);
+                stringBuilder.AppendLine(ex.StackTrace);
+                ex = ex.InnerException;
+            }
+            Log(stringBuilder.ToString());
+        }
     }
 }

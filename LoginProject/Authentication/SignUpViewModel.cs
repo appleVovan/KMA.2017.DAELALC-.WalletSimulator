@@ -7,6 +7,7 @@ using System.Windows;
 using LoginProject;
 using LoginProject.Annotations;
 using WalletSimulator.DBAdapter;
+using WalletSimulator.Interface;
 using WalletSimulator.Interface.Models;
 using WalletSimulator.Properties;
 using WalletSimulator.Tools;
@@ -106,7 +107,7 @@ namespace WalletSimulator.Authentication
                         MessageBox.Show(String.Format(Resources.SignUp_EmailIsNotValid, _email));
                         return;
                     }
-                    if (EntityWrapper.UserExists(_login))
+                    if (WalletServiceWrapper.UserExists(_login))
                     {
                         MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
                         return;
@@ -122,7 +123,7 @@ namespace WalletSimulator.Authentication
                 try
                 {
                     var user = new User(_firstName, _lastName, _email, _login, _password);
-                    EntityWrapper.AddUser(user);
+                    WalletServiceWrapper.AddUser(user);
                     isUserCreated = true;
                 }
                 catch (Exception ex)

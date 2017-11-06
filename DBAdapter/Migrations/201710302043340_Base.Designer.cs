@@ -7,13 +7,13 @@ namespace WalletSimulator.DBAdapter.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Two : IMigrationMetadata
+    public sealed partial class Base : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Two));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Base));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710301046280_Two"; }
+            get { return "201710302043340_Base"; }
         }
         
         string IMigrationMetadata.Source

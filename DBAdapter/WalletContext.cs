@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using WalletInterfaceAndModels.Models;
 using WalletSimulator.DBAdapter.Migrations;
 using WalletSimulator.Interface.Models;
 
@@ -7,10 +6,9 @@ namespace WalletSimulator.DBAdapter
 {
     public class WalletContext:DbContext
     {
-        public WalletContext():base("UI")
+        public WalletContext():base("DB")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WalletContext, Configuration>("UI"));
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WalletContext, Configuration>("DB"));
         }
 
         public DbSet<User> Users { get; set; }

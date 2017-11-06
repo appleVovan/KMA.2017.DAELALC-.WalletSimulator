@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using WalletSimulator.Interface.Models;
 
@@ -36,6 +37,24 @@ namespace WalletSimulator.DBAdapter
             using (var context = new WalletContext())
             {
                 context.Wallets.Add(wallet);
+                context.SaveChanges();
+            }
+        }
+
+        public static void SaveWallet(Wallet wallet)
+        {
+            using (var context = new WalletContext())
+            {
+                context.Entry(wallet).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public static void AddTransaction(Transaction transaction)
+        {
+            using (var context = new WalletContext())
+            {
+                context.Transactions.Add(transaction);
                 context.SaveChanges();
             }
         }
