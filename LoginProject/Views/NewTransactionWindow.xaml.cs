@@ -1,31 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using LoginProject;
-using WalletSimulator.DBAdapter;
 using WalletSimulator.Interface;
 using WalletSimulator.Interface.Models;
 
-namespace WalletSimulator
+namespace WalletSimulator.Views
 {
     /// <summary>
     /// Interaction logic for NewTransactionWindow.xaml
     /// </summary>
     public partial class NewTransactionWindow : Window
     {
-        private readonly Wallet _currentWallet;
+        private readonly Interface.Models.Wallet _currentWallet;
 
-        public NewTransactionWindow(Wallet wallet)
+        public NewTransactionWindow(Interface.Models.Wallet wallet)
         {
             InitializeComponent();
             _currentWallet = wallet;

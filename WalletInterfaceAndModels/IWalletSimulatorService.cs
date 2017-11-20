@@ -1,4 +1,6 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 using WalletSimulator.Interface.Models;
 
 
@@ -19,5 +21,13 @@ namespace WalletSimulator.Interface
         void SaveWallet(Wallet wallet);
         [OperationContract]
         void AddTransaction(Transaction transaction);
+        [OperationContract]
+        List<User> GetAllUsers(Guid walletGuid);
+
+        [OperationContract]
+        void AddUserWalletRelation(UserWalletRelation userWallet);
+        [OperationContract]
+        void DeleteUserWalletRelation(UserWalletRelation userWallet);
+
     }
 }

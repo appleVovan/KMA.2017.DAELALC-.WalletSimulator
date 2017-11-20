@@ -8,51 +8,44 @@ namespace WalletSimulator.Interface.Models
     public class Transaction
     {
         #region Fields
-        [DataMember]
-        private Guid _guid;
-        [DataMember]
-        private int _amount;
-        [DataMember]
-        private string _title;
-        [DataMember]
-        private DateTime _date;
-        [DataMember]
-        private Guid _walletGuid;
-        [DataMember]
-        private Guid _userGuid;
-        [DataMember]
-        private Wallet _wallet;
-        [DataMember]
-        private User _user;
+
+        [DataMember] private Guid _guid;
+        [DataMember] private int _amount;
+        [DataMember] private string _title;
+        [DataMember] private DateTime _date;
+        [DataMember] private Guid _walletGuid;
+        [DataMember] private Guid _userGuid;
+        [DataMember] private Wallet _wallet;
+        [DataMember] private User _user;
+
         #endregion
 
         #region Properties
+
         private Guid Guid
         {
             get { return _guid; }
             set { _guid = value; }
         }
+
         private int Amount
         {
             get { return _amount; }
             set { _amount = value; }
         }
+
         private string Title
         {
             get { return _title; }
             set { _title = value; }
         }
+
         private DateTime Date
         {
-            get
-            {
-                return _date;
-            }
-            set
-            {
-                _date = value;
-            }
+            get { return _date; }
+            set { _date = value; }
         }
+
         internal Guid WalletGuid
         {
             get { return _walletGuid; }
@@ -65,6 +58,7 @@ namespace WalletSimulator.Interface.Models
                 }
             }
         }
+
         internal Guid UserGuid
         {
             get { return _userGuid; }
@@ -77,6 +71,7 @@ namespace WalletSimulator.Interface.Models
                 }
             }
         }
+
         internal Wallet Wallet
         {
             get { return _wallet; }
@@ -87,6 +82,7 @@ namespace WalletSimulator.Interface.Models
                     _walletGuid = _wallet.Guid;
             }
         }
+
         internal User User
         {
             get { return _user; }
@@ -97,27 +93,39 @@ namespace WalletSimulator.Interface.Models
                     _userGuid = _user.Guid;
             }
         }
+
         #endregion
 
         #region Constructor
+
         public Transaction(int amount, string title, Wallet wallet, User user)
         {
             _guid = Guid.NewGuid();
             _amount = amount;
             _title = title;
             _date = DateTime.Today;
+
             Wallet = wallet;
             User = user;
             Wallet.Transactions.Add(this);
             User.Transactions.Add(this);
         }
+
         public Transaction()
         {
-            
+
         }
+
         #endregion
 
+        public void DeleteDatabaseValues()
+        {
+            _wallet = null;
+            _user = null;
+        }
+
         #region EntityFrameworkConfiguration
+
         public class TransactionEntityConfiguration : EntityTypeConfiguration<Transaction>
         {
             public TransactionEntityConfiguration()
@@ -141,7 +149,14 @@ namespace WalletSimulator.Interface.Models
                     .HasColumnName("WalletGuid")
                     .IsRequired();
             }
-        } 
+        }
+
         #endregion
+        
+
+        public override string ToString()
+        {
+            return Title + ": " + Amount;
+        }
     }
 }

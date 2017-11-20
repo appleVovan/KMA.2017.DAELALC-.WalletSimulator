@@ -4,11 +4,10 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using LoginProject;
 using LoginProject.Annotations;
-using WalletSimulator.DBAdapter;
 using WalletSimulator.Interface;
 using WalletSimulator.Interface.Models;
 
-namespace WalletSimulator
+namespace WalletSimulator.ViewModels
 {
     class WalletViewModel : INotifyPropertyChanged
     {
@@ -65,7 +64,7 @@ namespace WalletSimulator
 
         private void AddTransaction(Object o)
         {
-            var transactionWindow = new NewTransactionWindow(_currentWallet);
+            var transactionWindow = new Views.NewTransactionWindow(_currentWallet);
             transactionWindow.ShowDialog();
 
             OnPropertyChanged("Transactions");

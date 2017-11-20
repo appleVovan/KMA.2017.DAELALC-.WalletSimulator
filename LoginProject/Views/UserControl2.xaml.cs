@@ -12,20 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WalletSimulator.Interface.Models;
 
 namespace WalletSimulator
 {
     /// <summary>
-    /// Interaction logic for WalletView.xaml
+    /// Interaction logic for UserControl2.xaml
     /// </summary>
-    public partial class WalletView : UserControl
+    public partial class UserControl2 : UserControl
     {
-        private Wallet wallet;
-
-        public WalletView(Wallet wallet)
+        public UserControl2()
         {
-            this.wallet = wallet;
             InitializeComponent();
         }
     }

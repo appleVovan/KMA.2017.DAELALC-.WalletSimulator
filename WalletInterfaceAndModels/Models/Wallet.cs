@@ -24,7 +24,7 @@ namespace WalletSimulator.Interface.Models
         #endregion
 
         #region Properties
-        internal Guid Guid
+        public Guid Guid
         {
             get { return _guid; }
             private set { _guid = value; }
@@ -45,7 +45,7 @@ namespace WalletSimulator.Interface.Models
             private set { _totalOutcome = value; }
         }
 
-        internal List<UserWalletRelation> UserWalletRelations
+        public List<UserWalletRelation> UserWalletRelations
         {
             get { return _userWalletRelations; }
             private set { _userWalletRelations = value; }
@@ -71,8 +71,20 @@ namespace WalletSimulator.Interface.Models
         {
             _transactions = new List<Transaction>();
             _userWalletRelations = new List<UserWalletRelation>();
-        } 
+        }
         #endregion
+
+        public void DeleteDatabaseValues()
+        {
+            for (int i = 0; i < Transactions.Count; i++)
+            {
+                Transactions[i].DeleteDatabaseValues();
+            }
+            for (int i = 0; i < UserWalletRelations.Count; i++)
+            {
+                UserWalletRelations[i].DeleteDatabaseValues();
+            }
+        }
 
         public override string ToString()
         {

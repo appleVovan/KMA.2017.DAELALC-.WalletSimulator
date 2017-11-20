@@ -1,0 +1,25 @@
+﻿<Window x:Class="WalletSimulator.Views.NewTransactionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WalletSimulator"
+        mc:Ignorable="d"
+        Title="NewTransactionWindow" Height="104.366" Width="300">
+    <Grid>
+        <Label Grid.Row="0" Grid.Column="0">Title</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="TransactionTitle"></TextBox>
+        <Label Grid.Row="1" Grid.Column="0">Amount</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="TransactionAmount"></TextBox>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Name="Save" Content="Save" Click="Save_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Window>

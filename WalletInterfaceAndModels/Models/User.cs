@@ -219,5 +219,10 @@ namespace WalletSimulator.Interface.Models
             }
         }
         #endregion
+
+        public override string ToString()
+        {
+            return $"{LastName} {FirstName}";
+        }
     }
 }

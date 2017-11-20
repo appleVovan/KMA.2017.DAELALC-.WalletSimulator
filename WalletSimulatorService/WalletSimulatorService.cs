@@ -37,6 +37,21 @@ namespace WalletSimulator.Service
             EntityWrapper.AddTransaction(transaction);
         }
 
+        public List<User> GetAllUsers(Guid walletGuid)
+        {
+            return EntityWrapper.GetAllUsers(walletGuid);
+        }
+
+        public void AddUserWalletRelation(UserWalletRelation userWallet)
+        {
+            EntityWrapper.AddUserWalletRelation(userWallet);
+        }
+
+        public void DeleteUserWalletRelation(UserWalletRelation userWallet)
+        {
+            EntityWrapper.DeleteUserWalletRelation(userWallet);
+        }
+
         public void SaveWallet(Wallet wallet)
         {
             EntityWrapper.SaveWallet(wallet);

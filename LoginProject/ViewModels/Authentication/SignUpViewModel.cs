@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using LoginProject;
 using LoginProject.Annotations;
-using WalletSimulator.DBAdapter;
 using WalletSimulator.Interface;
 using WalletSimulator.Interface.Models;
 using WalletSimulator.Properties;
 using WalletSimulator.Tools;
 
-namespace WalletSimulator.Authentication
+namespace WalletSimulator.ViewModels.Authentication
 {
     internal class SignUpViewModel : INotifyPropertyChanged
     {
@@ -30,10 +29,14 @@ namespace WalletSimulator.Authentication
         public RelayCommand SignUpCommand { get; set; } 
         #endregion
 
-        internal string Password
+        public string Password
         {
             get { return _password; }
-            set { _password = value; }
+            set
+            {
+                _password = value;
+                OnPropertyChanged();
+            }
         }
 
         public string Login

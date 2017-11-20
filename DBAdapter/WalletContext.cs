@@ -14,6 +14,7 @@ namespace WalletSimulator.DBAdapter
         public DbSet<User> Users { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<UserWalletRelation> UserWalletRelations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

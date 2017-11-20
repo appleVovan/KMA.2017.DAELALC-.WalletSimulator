@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="WalletSimulator.WalletView"
+﻿<UserControl x:Class="WalletSimulator.Views.WalletView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WalletSimulator"
+             xmlns:helpers="clr-namespace:WalletSimulator.Views.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -21,7 +22,9 @@
             <Button Command="{Binding NewTransactionCommand}"  Content="+" Margin="10,5,10,5"></Button>
             <Button Command="{Binding SaveWalletCommand}"  Content="Save" Margin="10,5,10,5"></Button>
         </StackPanel>
-        
+
+        <helpers:LabelFieldView PropertyValue="{Binding TotalIncome, UpdateSourceTrigger=PropertyChanged}"
+                              PropertyName="Total Income" Margin="0,1,0,59" Grid.RowSpan="2"></helpers:LabelFieldView>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <Label Content="Total Income" Margin="5"></Label>
             <TextBlock  Text="{Binding TotalIncome, UpdateSourceTrigger=PropertyChanged}" Name="TotalIncome" Margin="5"></TextBlock>
@@ -33,3 +36,4 @@
         <ListBox ItemsSource="{Binding Transactions}" Grid.Row="2" Grid.ColumnSpan="2" Name="OperationsHistory" Margin="10"/>
     </Grid>
 </UserControl>
+

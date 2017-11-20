@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using LoginProject;
-using WalletSimulator.Authentication;
-using WalletSimulator.DBAdapter;
-using WalletSimulator.Interface;
 using WalletSimulator.Interface.Models;
+using WalletSimulator.ViewModels;
+using WalletSimulator.Views;
+using WalletSimulator.Views.Wallet;
+using SignInWindow = WalletSimulator.Views.Authentication.SignInWindow;
 
 namespace WalletSimulator
 {
@@ -15,85 +13,40 @@ namespace WalletSimulator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Wallet _currentWallet;
-        private WalletView _currentWalletView;
-        private Button _currentButton;
-        private Brush _defaultBorderBrush;
+        private MainWindowViewModel _mainWindowViewModel;
+        private WalletConfigurationView _currentWalletConfigurationView;
+
         public MainWindow()
         {
             InitializeComponent();
             Visibility = Visibility.Hidden;
             SignInWindow loginWindow = new SignInWindow();
-
             loginWindow.Closed += (sender, args) => Initialize();
             loginWindow.ShowDialog();
-            
-            
         }
 
         private void Initialize()
         {
             Visibility = Visibility.Visible;
-            FillWallet();
-            
+            _mainWindowViewModel = new MainWindowViewModel();
+            _mainWindowViewModel.WalletChanged+= OnWalletChanged;
+            DataContext = _mainWindowViewModel;
         }
 
-        private void OnExit(object obj, EventArgs a)
+        private void OnWalletChanged(Wallet wallet)
         {
-            MessageBox.Show("Salut!");
-            Environment.Exit(0);
-        }
-
-        private void FillWallet()
-        {
-            WalletsPanel.Children.Clear();
-            foreach (var wallet in StationManager.CurrentUser.UserWalletRelations)
+            if (_currentWalletConfigurationView == null)
             {
-                if (_currentWallet == null)
-                    _currentWallet = wallet.Wallet;
-                Button walletButton = new Button();
-                WalletsPanel.Children.Add(walletButton);
-                walletButton.Content = wallet.Wallet;
-                walletButton.Click += WalletButton_Click;
-                if (wallet.Wallet == _currentWallet)
-                {
-                    if (_defaultBorderBrush == null)
-                        _defaultBorderBrush = walletButton.BorderBrush;
-                    walletButton.BorderBrush = new SolidColorBrush(Colors.Red);
-                    _currentButton = walletButton;
-                }
-            }
-            if (_currentWallet == null)
-                return;
-            if (_currentWalletView == null)
-            {
-                _currentWalletView = new WalletView(_currentWallet);
-                MainGrid.Children.Add(_currentWalletView);
-                Grid.SetRow(_currentWalletView, 1);
-                Grid.SetColumn(_currentWalletView, 1);
+                _currentWalletConfigurationView = new WalletConfigurationView(wallet);
+                MainGrid.Children.Add(_currentWalletConfigurationView);
+                Grid.SetRow(_currentWalletConfigurationView, 0);
+                Grid.SetRowSpan(_currentWalletConfigurationView, 2);
+                Grid.SetColumn(_currentWalletConfigurationView, 1);
             }
             else
-            {
-                _currentWalletView.DataContext = new WalletViewModel(_currentWallet);
-            }
-        }
+                _currentWalletConfigurationView = new WalletConfigurationView(wallet);
 
-        private void WalletButton_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as Button;
-            var wallet = button.Content as Wallet;
-            _currentWallet = wallet;
-            _currentButton.BorderBrush = _defaultBorderBrush;
-            _currentButton = button;
-            _currentButton.BorderBrush = new SolidColorBrush(Colors.Red);
-            _currentWalletView.DataContext = new WalletViewModel(wallet);
         }
-
-        private void AddWallet_Click(object sender, RoutedEventArgs e)
-        {
-            Wallet wallet = new Wallet("WAllet", StationManager.CurrentUser);
-            WalletServiceWrapper.AddWallet(wallet);
-            FillWallet();
-        }
+        
     }
 }

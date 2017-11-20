@@ -32,7 +32,7 @@ namespace WalletSimulator.Interface.Models
             get { return _userGuid; }
             private set { _userGuid = value; }
         }
-        internal Guid WalletGuid
+        public Guid WalletGuid
         {
             get { return _walletGuid; }
             private set { _walletGuid = value; }
@@ -43,7 +43,7 @@ namespace WalletSimulator.Interface.Models
             get { return _wallet; }
             private set { _wallet = value; }
         }
-        internal User User
+        public User User
         {
             get { return _user; }
             private set { _user = value; }
@@ -56,6 +56,8 @@ namespace WalletSimulator.Interface.Models
             _guid = Guid.NewGuid();
             _userGuid = user.Guid;
             _walletGuid = wallet.Guid;
+            User = user;
+            Wallet = wallet;
             user.UserWalletRelations.Add(this);
             wallet.UserWalletRelations.Add(this);
         }
@@ -81,6 +83,12 @@ namespace WalletSimulator.Interface.Models
             }
         }
         #endregion
+
+        public void DeleteDatabaseValues()
+        {
+            User = null;
+            Wallet = null;
+        }
     }
 }
 

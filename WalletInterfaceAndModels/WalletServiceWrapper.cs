@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using WalletSimulator.Interface.Models;
 
 namespace WalletSimulator.Interface
@@ -61,6 +58,33 @@ namespace WalletSimulator.Interface
             {
                 IWalletSimulatorService client = myChannelFactory.CreateChannel();
                 client.SaveWallet(wallet);
+            }
+        }
+
+        public static List<User> GetAllUsers(Guid walletGuid)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                return client.GetAllUsers(walletGuid);
+            }
+        }
+
+        public static void AddUserWalletRelation(UserWalletRelation userWallet)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                client.AddUserWalletRelation(userWallet);
+            }
+        }
+
+        public static void DeleteUserWalletRelation(UserWalletRelation userWallet)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                client.DeleteUserWalletRelation(userWallet);
             }
         }
     }
