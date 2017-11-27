@@ -7,11 +7,10 @@ namespace WalletSimulator.Views
     /// <summary>
     /// Interaction logic for WalletView.xaml
     /// </summary>
-    public partial class WalletView : UserControl
+    public partial class WalletTransactionsView : UserControl
     {
-        public WalletView(Interface.Models.Wallet wallet)
+        public WalletTransactionsView()
         {
-            DataContext = new WalletViewModel(wallet);
             InitializeComponent();
         }
     }

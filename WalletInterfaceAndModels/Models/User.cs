@@ -36,7 +36,7 @@ namespace WalletSimulator.Interface.Models
         #endregion
 
         #region Properties
-        internal Guid Guid
+        public Guid Guid
         {
             get
             {

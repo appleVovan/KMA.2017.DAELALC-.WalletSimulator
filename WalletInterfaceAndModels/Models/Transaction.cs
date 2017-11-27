@@ -46,7 +46,7 @@ namespace WalletSimulator.Interface.Models
             set { _date = value; }
         }
 
-        internal Guid WalletGuid
+        public Guid WalletGuid
         {
             get { return _walletGuid; }
             private set

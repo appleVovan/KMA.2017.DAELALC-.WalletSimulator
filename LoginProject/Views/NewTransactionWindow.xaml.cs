@@ -21,7 +21,7 @@ namespace WalletSimulator.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            var transaction = new Transaction(Convert.ToInt32(TransactionAmount.Text), TransactionAmount.Text,
+            var transaction = new Transaction(Convert.ToInt32(TransactionAmount.Text), TransactionTitle.Text,
                 _currentWallet, StationManager.CurrentUser);
             
             WalletServiceWrapper.AddTransaction(transaction);

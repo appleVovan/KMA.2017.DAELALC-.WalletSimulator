@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using WalletSimulator.Interface.Models;
@@ -86,10 +87,46 @@ namespace WalletSimulator.DBAdapter
             using (var context = new WalletContext())
             {
                 userWallet.DeleteDatabaseValues();
-                context.UserWalletRelations.Remove(userWallet);
+                context.Entry(userWallet).State=EntityState.Deleted;
                 context.SaveChanges();
             }
         }
 
+        public static List<UserWalletRelation> GetAssignedUsers(Guid currentWalletGuid)
+        {
+            using (var context = new WalletContext())
+            {
+                return context.UserWalletRelations.Include(t=>t.User).Where(r => r.WalletGuid == currentWalletGuid).ToList();
+            }
+        }
+
+        public static List<Transaction> GetTransactions(Guid currentWalletGuid)
+        {
+            using (var context = new WalletContext())
+            {
+                return context.Transactions.Where(u=> u.WalletGuid==currentWalletGuid).ToList();
+            }
+        }
+
+        public static void DeleteTransaction(Transaction transaction)
+        {
+            using (var context = new WalletContext())
+            {
+                transaction.DeleteDatabaseValues();
+                context.Entry(transaction).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteWallet(Wallet selectedWallet)
+        {
+            using (var context = new WalletContext())
+            {
+                selectedWallet.DeleteDatabaseValues();
+                context.Wallets.Attach(selectedWallet);
+                context.Wallets.Remove(selectedWallet);
+                context.SaveChanges();
+            }
+        }
     }
 }

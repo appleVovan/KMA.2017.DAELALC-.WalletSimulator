@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:LoginProject"
         xmlns:walletSimulator="clr-namespace:WalletSimulator"
         mc:Ignorable="d"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="MainWindow" Height="350" Width="525">
     <Grid Name="MainGrid" Height="Auto">
         <Grid.ColumnDefinitions>
@@ -18,6 +20,11 @@
         </Grid.RowDefinitions>
         <Button Content="Add Wallet" Command="{Binding AddWalletCommand}" Grid.Row="0"/>
         <ListBox Grid.Row="1"  ItemsSource="{Binding Wallets}" SelectedItem="{Binding SelectedWallet}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="Auto" Margin="2">
+            <i:Interaction.Triggers >
+                <i:EventTrigger EventName="KeyDown">
+                    <prism:InvokeCommandAction Command="{Binding DeleteWalletCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">

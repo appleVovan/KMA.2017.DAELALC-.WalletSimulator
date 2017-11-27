@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ServiceModel;
 using WalletSimulator.Interface.Models;
 
@@ -7,6 +8,15 @@ namespace WalletSimulator.Interface
 {
     public class WalletServiceWrapper
     {
+        public static void DeleteTransaction(Transaction transaction)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                client.DeleteTransaction(transaction);
+            }
+        }
+
         public static void AddTransaction(Transaction transaction)
         {
             using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
@@ -85,6 +95,33 @@ namespace WalletSimulator.Interface
             {
                 IWalletSimulatorService client = myChannelFactory.CreateChannel();
                 client.DeleteUserWalletRelation(userWallet);
+            }
+        }
+
+        public static List<UserWalletRelation> GetAssignedUsers(Guid currentWalletGuid)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                return client.GetAssignedUsers(currentWalletGuid);
+            }
+        }
+
+        public static List<Transaction> GetTransactions(Guid currentWalletGuid)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                return client.GetTransactions(currentWalletGuid);
+            }
+        }
+
+        public static void DeleteWallet(Wallet selectedWallet)
+        {
+            using (var myChannelFactory = new ChannelFactory<IWalletSimulatorService>("Server"))
+            {
+                IWalletSimulatorService client = myChannelFactory.CreateChannel();
+                client.DeleteWallet(selectedWallet);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,11 @@ namespace WalletSimulator.Service
             EntityWrapper.AddWallet(wallet);
         }
 
+        public void DeleteTransaction(Transaction transaction)
+        {
+            EntityWrapper.DeleteTransaction(transaction);
+        }
+
         public void AddTransaction(Transaction transaction)
         {
             EntityWrapper.AddTransaction(transaction);
@@ -51,6 +57,22 @@ namespace WalletSimulator.Service
         {
             EntityWrapper.DeleteUserWalletRelation(userWallet);
         }
+
+        public List<UserWalletRelation> GetAssignedUsers(Guid currentWalletGuid)
+        {
+            return EntityWrapper.GetAssignedUsers(currentWalletGuid);
+        }
+
+        public List<Transaction> GetTransactions(Guid currentWalletGuid)
+        {
+            return EntityWrapper.GetTransactions(currentWalletGuid);
+        }
+
+        public void DeleteWallet(Wallet selectedWallet)
+        {
+            EntityWrapper.DeleteWallet(selectedWallet);
+        }
+
 
         public void SaveWallet(Wallet wallet)
         {

@@ -6,6 +6,7 @@ namespace WalletSimulator.Views.Helpers
 {
     internal static class LoaderHelper
     {
+        internal delegate void LoaderAction(Grid grid, ref ImageAwesome loader, bool isShow);
         internal static void OnRequestLoader(Grid grid, ref ImageAwesome loader, bool isShow)
         {
             if (isShow && loader == null)

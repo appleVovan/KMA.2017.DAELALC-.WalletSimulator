@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WalletSimulator.Views.Wallet"
              xmlns:helpers="clr-namespace:WalletSimulator.Views.Helpers"
+             xmlns:views="clr-namespace:WalletSimulator.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -13,11 +14,9 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
-            <RowDefinition ></RowDefinition>
-            <RowDefinition Height="10"></RowDefinition>
-            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -28,19 +27,13 @@
         <helpers:LabelFieldView Grid.Row="2" Grid.Column="0" PropertyName="Total Income" Margin="5" IsEnabled="False"
                                 PropertyValue="{Binding TotalIncome, UpdateSourceTrigger=PropertyChanged}"/>
         <helpers:LabelFieldView Grid.Row="2" Grid.Column="1" PropertyName="Total Outcome" Margin="5" IsEnabled="False"
-                                PropertyValue="{Binding TotalOut, UpdateSourceTrigger=PropertyChanged}"/>
-        <Grid Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="55"/>
-                <ColumnDefinition Width="55"/>
-            </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" ItemsSource="{Binding NotAssignedUsers}" SelectedItem="{Binding SelectedNotAssignedUser}"  Margin="5"></ComboBox>
-            <Button Grid.Column="1" Name="AddUSer" Content="Add" Margin="5" Command="{Binding AddUserCommand}"/>
-            <Button Grid.Column="2" Name="DeleteUser" Content="Delete" Margin="5" Command="{Binding DeleteUserCommand}"/>
+                                PropertyValue="{Binding TotalOutCome, UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid Name="ControlGrid" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+            <views:WalletTransactionsView  Visibility="{Binding ChangeControlTransactionVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <local:WalletUsersView  Visibility="{Binding ChangeControlUserVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-        <ListBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding AssignedUsers}" SelectedItem="{Binding SelectedAssignedUser}" ScrollViewer.VerticalScrollBarVisibility="Visible"  Margin="5"/>
-        <Button Grid.Row="8" Grid.Column="0" Command="{Binding SaveWalletCommand}" Content="Save" Margin="5"/>
-        <Button Grid.Row="8" Grid.Column="1" Command="{Binding SaveWalletCommand}" Content="Transactions" Margin="5"/>
+        <Button Grid.Row="6" Grid.Column="0" Command="{Binding SaveWalletCommand}" Content="Save" Margin="5"/>
+        <Button Grid.Row="6" Grid.Column="1" Command="{Binding GoToTransactionCommand}" Content="{Binding ButtonName}" Margin="5"/>
+        
     </Grid>
 </UserControl>

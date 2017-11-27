@@ -44,7 +44,7 @@ namespace WalletSimulator
                 Grid.SetColumn(_currentWalletConfigurationView, 1);
             }
             else
-                _currentWalletConfigurationView = new WalletConfigurationView(wallet);
+                _currentWalletConfigurationView.DataContext = new WalletConfigurationViewModel(wallet);
 
         }
         
